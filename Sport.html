@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Sport</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .sport-section {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 40px 0 0 0;
+            text-align: center;
+        }
+        .sport-bg {
+            flex: 1;
+            background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .sport-desc {
+            background: rgba(44, 62, 80, 0.8);
+            color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 500px;
+            margin: 0 auto;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="sport-section">
+        <h1>Sport</h1>
+    </div>
+    <div class="sport-bg">
+        <div class="sport-desc">
+            Le sport est essentiel pour le bien-être physique et mental. Il favorise la santé, la cohésion sociale et l'esprit d'équipe.
+        </div>
+    </div>
+</body>
+</html>

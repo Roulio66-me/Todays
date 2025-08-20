@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Productivité</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #4CAF50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        main {
+            max-width: 800px;
+            margin: 30px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #333;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #e7f5e6;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .add-task {
+            display: flex;
+            margin-top: 20px;
+        }
+        .add-task input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px 0 0 4px;
+        }
+        .add-task button {
+            padding: 10px 20px;
+            border: none;
+            background: #4CAF50;
+            color: white;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Productivité</h1>
+        <p>Organisez vos tâches et boostez votre efficacité</p>
+    </header>
+    <main>
+        <h2>Liste de tâches</h2>
+        <ul id="task-list">
+            <!-- Les tâches apparaîtront ici -->
+        </ul>
+        <div class="add-task">
+            <input type="text" id="new-task" placeholder="Ajouter une nouvelle tâche...">
+            <button onclick="addTask()">Ajouter</button>
+        </div>
+    </main>
+    <script>
+        function addTask() {
+            const input = document.getElementById('new-task');
+            const taskText = input.value.trim();
+            if (taskText) {
+                const ul = document.getElementById('task-list');
+                const li = document.createElement('li');
+                li.textContent = taskText;
+                ul.appendChild(li);
+                input.value = '';
+            }
+        }
+    </script>
+</body>
+</html>
