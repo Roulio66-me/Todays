@@ -4,191 +4,164 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todays</title>
-    <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<header>
-    <img class="logo" src="" alt="logo">
-    <div class="header-actions">
-        <nav>
-            <ul class="nav-links">
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="#programmes">Programme</a></li>
-                <li><a href="#">Tarif</a></li>
-            </ul>
-        </nav>
-        <div class="header-buttons">
-            <a class="cta" href="contact.html"><button>Contact</button></a>
-            <a id="profile-link" href="profil.html" class="profile-icon">
-                <i class="fas fa-user"></i>
-            </a>
-        </div>
-    </div>
-</header>
 <body>
-    <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+    <header>
+        <img class="logo" src="" alt="logo">
+        <div class="header-actions">
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="programmes.html">Programmes</a></li>
+                    <li><a href="#">Tarifs</a></li>
+                </ul>
+            </nav>
+            <div class="header-buttons">
+                <a class="cta" href="contact.html"><button>Contact</button></a>
+                <a id="profile-link" href="#" class="profile-icon">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+        </div>
+    </header>
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyAf24xv1trcTaKimrQMCfB8hxt4WKB0fPs",
-    authDomain: "nexttodays.firebaseapp.com",
-    projectId: "nexttodays",
-    storageBucket: "nexttodays.firebasestorage.app",
-    messagingSenderId: "1004505500687",
-    appId: "1:1004505500687:web:9c04da365870e3f49ee77a",
-    measurementId: "G-S8K683PWT4"
-  };
+    <div class="tag-cloud-container">
+        <br><br><br>
+        <h1 class="stroke">
+            Passez à l'action,<br>créez votre nouvelle réalité !
+        </h1>
+        <div class="tag-cloud-container">
+            <div class="show-hide-button-container">
+                <button id="startButton" class="show-hide-button"><h2>Commencer maintenant</h2></button>
+            </div>
+        </div>
+    </div>
+    
+    <br><br><br><br><br>
+      <section class="presentation-section">
+        <div class="video-container">
+            <img src="placeholder-video.jpg" alt="Vidéo de présentation" class="video-placeholder">
+        </div>
+        <div class="presentation-content">
+            <h2>Transformez votre vie avec Todays</h2>
+            <p>
+                Découvrez nos programmes de développement personnel conçus pour vous aider à atteindre vos objectifs, améliorer votre bien-être et booster votre productivité. Nos méthodes éprouvées vous guideront pas à pas vers une vie plus épanouie.
+            </p>
+            <a href="contact.html" class="cta-button">Découvrir la démo</a>
+        </div>
+    </section>
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
-<script>import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-
-const auth = getAuth();
-
-// Gérer l'inscription
-const signupEmail = document.getElementById('signup-email');
-const signupPassword = document.getElementById('signup-password');
-const signupButton = document.getElementById('signup-button');
-
-signupButton.addEventListener('click', () => {
-    createUserWithEmailAndPassword(auth, signupEmail.value, signupPassword.value)
-        .then((userCredential) => {
-            // Utilisateur inscrit et connecté
-            const user = userCredential.user;
-            console.log('Utilisateur inscrit :', user.email);
-            alert('Compte créé avec succès !');
-        })
-        .catch((error) => {
-            // Gérer les erreurs
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.error(errorMessage);
-            alert(errorMessage);
-        });
-});
-
-// Gérer la connexion
-const loginEmail = document.getElementById('login-email');
-const loginPassword = document.getElementById('login-password');
-const loginButton = document.getElementById('login-button');
-
-loginButton.addEventListener('click', () => {
-    signInWithEmailAndPassword(auth, loginEmail.value, loginPassword.value)
-        .then((userCredential) => {
-            // Utilisateur connecté
-            const user = userCredential.user;
-            console.log('Utilisateur connecté :', user.email);
-            alert('Connexion réussie !');
-        })
-        .catch((error) => {
-            // Gérer les erreurs
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.error(errorMessage);
-            alert(errorMessage);
-        });
-});
-</script>
-    <div id="me" class="tag-cloud-container">
+    <div class="programs-container">
+        <h2 class="programs-title">Nos Programmes</h2>
         <br><br>
-                    <h1 class="stroke">
-            Passer à l'action, <br> créez votre nouvelle réalité !
-                    </h1>
-  <div class="tag-cloud-container">
-    <div class="tag-cloud" id="tagCloud">
-        <span class="tag" data-emoji="💡" data-tags="Reboot Mental,Développement Personnel">Motivation 💡</span>
-        <span class="tag" data-emoji="📈" data-tags="Productivité,Développement Personnel">Progrès 📈</span>
-        <span class="tag" data-emoji="📅" data-tags="Gestion du temps et des priorités">Organisation 📅</span>
-        <span class="tag" data-emoji="🎯" data-tags="Habitudes et Discipline,Développement Personnel">Objectifs 🎯</span>
-        <span class="tag" data-emoji="📚" data-tags="Développement Personnel">Lecture 📚</span>
-        <span class="tag" data-emoji="🏃" data-tags="Sport">Action 🏃</span>
-        <span class="tag" data-emoji="⏰" data-tags="Gestion du temps et des priorités">Gestion du temps ⏰</span>
-        <span class="tag" data-emoji="📝" data-tags="Gestion du temps et des priorités,Productivité">Planification 📝</span>
-        <span class="tag" data-emoji="🌱" data-tags="Développement Personnel">Croissance 🌱</span>
-        <span class="tag" data-emoji="🤝" data-tags="Leadership et Collaboration">Collaboration 🤝</span>
-        <span class="tag" data-emoji="🧠" data-tags="Reboot Mental">Mindset 🧠</span>
-        <span class="tag" data-emoji="💪" data-tags="Sport,Habitudes et Discipline">Persévérance 💪</span>
-        <span class="tag" data-emoji="🔑" data-tags="Habitudes et Discipline">Discipline 🔑</span>
-        <span class="tag" data-emoji="🌟" data-tags="Développement Personnel,Reboot Mental">Inspiration 🌟</span>
-        <span class="tag" data-emoji="🛠️" data-tags="Productivité">Compétences 🛠️</span>
-        <span class="tag" data-emoji="🚀" data-tags="Développement Personnel">Ambition 🚀</span>
-        <span class="tag" data-emoji="🎨" data-tags="Créativité et Expression">Créativité 🎨</span>
-        <span class="tag" data-emoji="🧩" data-tags="Créativité et Expression,Développement Personnel">Résolution de problèmes 🧩</span>
-        <span class="tag" data-emoji="💬" data-tags="Leadership et Collaboration">Communication 💬</span>
-        <span class="tag" data-emoji="🛡️" data-tags="Reboot Mental">Confiance en soi 🛡️</span>
-        <span class="tag" data-emoji="🎵" data-tags="Santé et Bien-être">Énergie 🎵</span>
-        <span class="tag" data-emoji="🧭" data-tags="Gestion du temps et des priorités">Orientation 🧭</span>
-        <span class="tag" data-emoji="🧺" data-tags="Habitudes et Discipline">Routine 🧺</span>
-        <span class="tag" data-emoji="🏆" data-tags="Sport,Développement Personnel">Succès 🏆</span>
-        <span class="tag" data-emoji="🧑‍💻" data-tags="Productivité">Productivité 🧑‍💻</span>
-        <span class="tag" data-emoji="🦸" data-tags="Leadership et Collaboration">Leadership 🦸</span>
-        <span class="tag" data-emoji="🧑‍🎓" data-tags="Développement Personnel">Apprentissage 🧑‍🎓</span>
-        <span class="tag" data-emoji="🧑‍🤝‍🧑" data-tags="Leadership et Collaboration">Réseautage 🧑‍🤝‍🧑</span>
-        <span class="tag" data-emoji="🧑‍🚀" data-tags="Développement Personnel">Ambition 🧑‍🚀</span>
-        <span class="tag" data-emoji="🧑‍🎤" data-tags="Créativité et Expression">Expression 🧑‍🎤</span>
-        <span class="tag" data-emoji="🧑‍🔧" data-tags="Productivité">Adaptabilité 🧑‍🔧</span>
-        <span class="tag" data-emoji="🧑‍⚕️" data-tags="Santé et Bien-être">Santé 🧑‍⚕️</span>
-        <span class="tag" data-emoji="🧑‍🍳" data-tags="Habitudes et Discipline">Habitudes 🧑‍🍳</span>
-        <span class="tag" data-emoji="🧑‍✈️" data-tags="Gestion du temps et des priorités">Décision 🧑‍✈️</span>
-        <span class="tag" data-emoji="🧑‍🎓" data-tags="Développement Personnel">Éducation 🧑‍🎓</span>
-        <span class="tag" data-emoji="🧑‍🏭" data-tags="Productivité">Gestion 🧑‍🏭</span>
-        <span class="tag" data-emoji="🧑‍🔬" data-tags="Productivité,Développement Personnel">Analyse 🧑‍🔬</span>
-        <span class="tag" data-emoji="🧑‍🎨" data-tags="Créativité et Expression">Design 🧑‍🎨</span>
-        <span class="tag" data-emoji="🧑‍🚒" data-tags="Reboot Mental">Courage 🧑‍🚒</span>
-        <span class="tag" data-emoji="🧑‍⚖️" data-tags="Leadership et Collaboration">Justice 🧑‍⚖️</span>
-        <span class="tag" data-emoji="🧑‍🔬" data-tags="Productivité">Innovation 🧑‍🔬</span>
-        <span class="tag" data-emoji="🧑‍🎤" data-tags="Créativité et Expression">Expression 🧑‍🎤</span>
-        <span class="tag" data-emoji="🧑‍💼" data-tags="Productivité">Responsabilité 🧑‍💼</span>
-        <span class="tag" data-emoji="🧑‍🌾" data-tags="Santé et Bien-être">Équilibre 🧑‍🌾</span>
-        <span class="tag" data-emoji="🧑‍💻" data-tags="Productivité">Focus 🧑‍💻</span>
-        <span class="tag" data-emoji="🧑‍🎓" data-tags="Développement Personnel">Développement 🧑‍🎓</span>
-        <span class="tag" data-emoji="🧑‍🔬" data-tags="Productivité">Stratégie 🧑‍🔬</span>
-        <span class="tag" data-emoji="🧑‍🏫" data-tags="Développement Personnel">Savoir 🧑‍🏫</span>
-        <span class="tag" data-emoji="🧑‍💼" data-tags="Santé et Bien-être">Gestion du stress 🧑‍💼</span>
-    </div>
-    <button id="toggleTagsButton" class="show-hide-button"><h2>Commencer maintenant</h2></button>
-</div>
-<br><br><br><br>
-<div id="programmes" class="programs-container">
-    <h2 class="programs-title">Programmes</h2>
-    <br><br>
-    <div class="programs-list">
-        <div class="program-block sport" onclick="showProgram('Sport')">
-            <span class="program-block-title">Sport</span>
-        </div>
-        <div class="program-block reboot-mental" onclick="showProgram('Reboot Mental')">
-            <span class="program-block-title">Reboot Mental</span>
-        </div>
-        <div class="program-block gestion-du-temps" onclick="showProgram('Gestion du temps et des priorités')">
-            <span class="program-block-title">Gestion du temps et des priorités</span>
-        </div>
-        <div class="program-block habitudes-discipline" onclick="showProgram('Habitudes et Discipline')">
-            <span class="program-block-title">Habitudes et Discipline</span>
-        </div>
-        <div class="program-block creativite-expression" onclick="showProgram('Créativité et Expression')">
-            <span class="program-block-title">Créativité et Expression</span>
-        </div>
-        <div class="program-block leadership-collaboration" onclick="showProgram('Leadership et Collaboration')">
-            <span class="program-block-title">Leadership et Collaboration</span>
-        </div>
-        <div class="program-block sante-bien-etre" onclick="showProgram('Santé et Bien-être')">
-            <span class="program-block-title">Santé et Bien-être</span>
-        </div>
-        <div class="program-block productivite" onclick="showProgram('Productivité')">
-            <span class="program-block-title">Productivité</span>
-        </div>
-        <div class="program-block developpement-personnel" onclick="showProgram('Développement Personnel')">
-            <span class="program-block-title">Développement Personnel</span>
+        <div class="programs-list">
+            <div class="program-block sport" data-program-name="Sport">
+                <span class="program-block-title">Sport</span>
+            </div>
+            <div class="program-block reboot-mental" data-program-name="Reboot Mental">
+                <span class="program-block-title">Reboot Mental</span>
+            </div>
+            <div class="program-block gestion-du-temps" data-program-name="Gestion du temps et des priorités">
+                <span class="program-block-title">Gestion du temps et des priorités</span>
+            </div>
+            <div class="program-block habitudes-discipline" data-program-name="Habitudes et Discipline">
+                <span class="program-block-title">Habitudes et Discipline</span>
+            </div>
+            <div class="program-block creativite-expression" data-program-name="Créativité et Expression">
+                <span class="program-block-title">Créativité et Expression</span>
+            </div>
+            <div class="program-block leadership-collaboration" data-program-name="Leadership et Collaboration">
+                <span class="program-block-title">Leadership et Collaboration</span>
+            </div>
+            <div class="program-block sante-bien-etre" data-program-name="Santé et Bien-être">
+                <span class="program-block-title">Santé et Bien-être</span>
+            </div>
+            <div class="program-block productivite" data-program-name="Productivité">
+                <span class="program-block-title">Productivité</span>
+            </div>
+            <div class="program-block developpement-personnel" data-program-name="Développement Personnel">
+                <span class="program-block-title">Développement Personnel</span>
+            </div>
         </div>
     </div>
-</div>
+    
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <p>Veuillez vous connecter pour accéder à ce programme.</p>
+            <a href="login.html" class="modal-button">Se connecter</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyAf24xv1trcTaKimrQMCfB8hxt4WKB0fPs",
+            authDomain: "nexttodays.firebaseapp.com",
+            projectId: "nexttodays",
+            storageBucket: "nexttodays.firebasestorage.app",
+            messagingSenderId: "1004505500687",
+            appId: "1:1004505500687:web:9c04da365870e3f49ee77a",
+            measurementId: "G-S8K683PWT4"
+        };
+        
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const startButton = document.getElementById('startButton');
+        const profileLink = document.getElementById('profile-link');
+
+        startButton.addEventListener('click', () => {
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    window.location.href = "programmes.html";
+                } else {
+                    window.location.href = "login.html";
+                }
+            });
+        });
+        
+        profileLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    window.location.href = "profil.html";
+                } else {
+                    window.location.href = "login.html";
+                }
+            });
+        });
+        
+        document.querySelectorAll('.program-block').forEach(block => {
+            block.addEventListener('click', () => {
+                onAuthStateChanged(auth, (user) => {
+                    if (user) {
+                        const programName = block.getAttribute('data-program-name');
+                        const formattedName = programName.replace(/\s/g, '');
+                        window.location.href = `${formattedName}.html`;
+                    } else {
+                        document.getElementById('loginModal').style.display = 'block';
+                    }
+                });
+            });
+        });
+
+        if (document.querySelector('.close-button')) {
+            document.querySelector('.close-button').addEventListener('click', () => {
+                document.getElementById('loginModal').style.display = 'none';
+            });
+        }
+        
+        window.addEventListener('click', (event) => {
+            if (event.target == document.getElementById('loginModal')) {
+                document.getElementById('loginModal').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

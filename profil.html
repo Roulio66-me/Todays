@@ -15,8 +15,8 @@
             <nav>
                 <ul class="nav-links">
                     <li><a href="index.html">Accueil</a></li>
-                    <li><a href="#programmes">Programme</a></li>
-                    <li><a href="#">Tarif</a></li>
+                    <li><a href="#programmes">Programmes</a></li>
+                    <li><a href="#">Tarifs</a></li>
                 </ul>
             </nav>
             <div class="header-buttons">
@@ -61,28 +61,23 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        // Récupération des éléments HTML
         const profileName = document.getElementById('profile-name');
         const profileEmail = document.getElementById('profile-email');
         const userEmailInfo = document.getElementById('user-email-info');
         const logoutButton = document.getElementById('logout-button');
 
-        // Vérification de l'état de l'utilisateur
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                // Utilisateur connecté : afficher les infos
                 console.log("Utilisateur connecté :", user.uid);
                 profileName.textContent = user.displayName || 'Utilisateur';
                 profileEmail.textContent = "Bienvenue sur votre espace de gestion de profil.";
                 userEmailInfo.textContent = user.email;
             } else {
-                // Utilisateur déconnecté : redirection vers la page de connexion
                 console.log("Utilisateur déconnecté. Redirection...");
                 window.location.href = "login.html";
             }
         });
 
-        // Gestion de la déconnexion
         logoutButton.addEventListener('click', () => {
             signOut(auth).then(() => {
                 console.log('Déconnexion réussie');
@@ -94,4 +89,4 @@
         });
     </script>
 </body>
-</html>
+</html> 

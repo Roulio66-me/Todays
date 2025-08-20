@@ -3,43 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todays</title>
-    <script src="script.js"></script>
+    <title>Todays - Connexion</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<header>
-    <img class="logo" src="" alt="logo">
-    <div class="header-actions">
-        <nav>
-            <ul class="nav-links">
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="#programmes">Programme</a></li>
-                <li><a href="#">Tarif</a></li>
-            </ul>
-        </nav>
-        <div class="header-buttons">
-            <a class="cta" href="contact.html"><button>Contact</button></a>
-            <a href="profil.html" class="profile-icon">
-                <i class="fas fa-user"></i>
-            </a>
+<body>
+    <header>
+        <img class="logo" src="" alt="logo">
+        <div class="header-actions">
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="programmes.html">Programmes</a></li>
+                    <li><a href="#">Tarifs</a></li>
+                </ul>
+            </nav>
+            <div class="header-buttons">
+                <a class="cta" href="contact.html"><button>Contact</button></a>
+                <a id="profile-link" href="#" class="profile-icon">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="auth-container">
+        <div id="auth-box" class="auth-box">
+            <form id="login-form">
+                <h2>Se connecter</h2>
+                <input type="email" id="login-email" placeholder="Email" required>
+                <input type="password" id="login-password" placeholder="Mot de passe" required>
+                <button type="submit">Se connecter</button>
+            </form>
+
+            <form id="signup-form" class="hidden">
+                <h2>Créer un compte</h2>
+                <input type="email" id="signup-email" placeholder="Email" required>
+                <input type="password" id="signup-password" placeholder="Mot de passe" required>
+                <button type="submit">S'inscrire</button>
+            </form>
+
+            <div class="switch-link">
+                <p>
+                    <span id="login-text">Pas encore de compte ?</span>
+                    <span id="signup-text" class="hidden">Déjà un compte ?</span>
+                    <a href="#" id="toggle-form">
+                        <span id="login-link">S'inscrire</span>
+                        <span id="signup-link" class="hidden">Se connecter</span>
+                    </a>
+                </p>
+            </div>
         </div>
     </div>
-</header>
-<body>
-     <div id="signup-form" class="auth-form">
-    <h2>Créer un compte</h2>
-    <input type="email" id="signup-email" placeholder="Email" required>
-    <input type="password" id="signup-password" placeholder="Mot de passe" required>
-    <button id="signup-button">S'inscrire</button>
-</div>
 
-<div id="login-form" class="auth-form">
-    <h2>Se connecter</h2>
-    <input type="email" id="login-email" placeholder="Email" required>
-    <input type="password" id="login-password" placeholder="Mot de passe" required>
-    <button id="login-button">Se connecter</button>
-</div>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyAf24xv1trcTaKimrQMCfB8hxt4WKB0fPs",
+            authDomain: "nexttodays.firebaseapp.com",
+            projectId: "nexttodays",
+            storageBucket: "nexttodays.firebasestorage.app",
+            messagingSenderId: "1004505500687",
+            appId: "1:1004505500687:web:9c04da365870e3f49ee77a",
+            measurementId: "G-S8K683PWT4"
+        };
+        
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        
+        // Récupération des éléments du formulaire
+        const loginForm = document.getElementById('login-form');
+        const signupForm = document.getElementById('signup-form');
+        const toggleLink = document.getElementById('toggle-form');
+        const loginLinkText = document.getElementById('login-link');
+        const signupLinkText = document.getElementById('signup-link');
+        const loginText = document.getElementById('login-text');
+        const signupText = document.getElementById('signup-text');
+        
+        toggleLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginForm.classList.toggle('hidden');
+            signupForm.classList.toggle('hidden');
+            loginLinkText.classList.toggle('hidden');
+            signupLinkText.classList.toggle('hidden');
+            loginText.classList.toggle('hidden');
+            signupText.classList.toggle('hidden');
+        });
+        
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    console.log('Utilisateur connecté :', userCredential.user.email);
+                    window.location.href = "profil.html";
+                })
+                .catch((error) => {
+                    console.error("Erreur de connexion:", error);
+                    alert("Erreur de connexion. Veuillez vérifier votre email et mot de passe.");
+                });
+        });
+        
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    console.log('Utilisateur inscrit :', userCredential.user.email);
+                    alert('Compte créé avec succès !');
+                    window.location.href = "profil.html";
+                })
+                .catch((error) => {
+                    console.error("Erreur d'inscription:", error);
+                    alert("Erreur d'inscription. " + error.message);
+                });
+        });
+    </script>
 </body>
 </html>
