@@ -21,7 +21,7 @@
         </nav>
         <div class="header-buttons">
             <a class="cta" href="contact.html"><button>Contact</button></a>
-            <a href="profil.html" class="profile-icon">
+            <a id="profile-link" href="profil.html" class="profile-icon">
                 <i class="fas fa-user"></i>
             </a>
         </div>
@@ -50,6 +50,54 @@
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
+</script>
+<script>import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+const auth = getAuth();
+
+// Gérer l'inscription
+const signupEmail = document.getElementById('signup-email');
+const signupPassword = document.getElementById('signup-password');
+const signupButton = document.getElementById('signup-button');
+
+signupButton.addEventListener('click', () => {
+    createUserWithEmailAndPassword(auth, signupEmail.value, signupPassword.value)
+        .then((userCredential) => {
+            // Utilisateur inscrit et connecté
+            const user = userCredential.user;
+            console.log('Utilisateur inscrit :', user.email);
+            alert('Compte créé avec succès !');
+        })
+        .catch((error) => {
+            // Gérer les erreurs
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.error(errorMessage);
+            alert(errorMessage);
+        });
+});
+
+// Gérer la connexion
+const loginEmail = document.getElementById('login-email');
+const loginPassword = document.getElementById('login-password');
+const loginButton = document.getElementById('login-button');
+
+loginButton.addEventListener('click', () => {
+    signInWithEmailAndPassword(auth, loginEmail.value, loginPassword.value)
+        .then((userCredential) => {
+            // Utilisateur connecté
+            const user = userCredential.user;
+            console.log('Utilisateur connecté :', user.email);
+            alert('Connexion réussie !');
+        })
+        .catch((error) => {
+            // Gérer les erreurs
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.error(errorMessage);
+            alert(errorMessage);
+        });
+});
 </script>
     <div id="me" class="tag-cloud-container">
         <br><br>

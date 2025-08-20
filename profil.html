@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Profil</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <header>
@@ -19,7 +21,7 @@
             </nav>
             <div class="header-buttons">
                 <a class="cta" href="contact.html"><button>Contact</button></a>
-                <a href="profile.html" class="profile-icon">
+                <a id="profile-link" href="#" class="profile-icon">
                     <i class="fas fa-user"></i>
                 </a>
             </div>
@@ -29,21 +31,67 @@
     <div class="profile-container">
         <div class="profile-card">
             <img class="profile-picture" src="https://via.placeholder.com/150" alt="Photo de profil">
-            <h1 class="profile-name">Votre Nom</h1>
-            <p class="profile-bio">
-                Passionné par le développement personnel, je travaille chaque jour pour créer une meilleure version de moi-même. Bienvenue sur mon profil !
-            </p>
+            <h1 id="profile-name" class="profile-name"></h1>
+            <p id="profile-email" class="profile-bio"></p>
+            <button id="logout-button" class="submit-button" style="margin-top: 20px;">Déconnexion</button>
         </div>
 
         <div class="info-section">
             <h2>Mes Informations</h2>
             <ul class="info-list">
-                <li><i class="fas fa-envelope"></i> Email: votre.email@example.com</li>
-                <li><i class="fas fa-phone"></i> Téléphone: 06 00 00 00 00</li>
-                <li><i class="fas fa-map-marker-alt"></i> Localisation: Paris, France</li>
+                <li><i class="fas fa-envelope"></i> Email: <span id="user-email-info"></span></li>
             </ul>
         </div>
     </div>
 
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAf24xv1trcTaKimrQMCfB8hxt4WKB0fPs",
+            authDomain: "nexttodays.firebaseapp.com",
+            projectId: "nexttodays",
+            storageBucket: "nexttodays.firebasestorage.app",
+            messagingSenderId: "1004505500687",
+            appId: "1:1004505500687:web:9c04da365870e3f49ee77a",
+            measurementId: "G-S8K683PWT4"
+        };
+        
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Récupération des éléments HTML
+        const profileName = document.getElementById('profile-name');
+        const profileEmail = document.getElementById('profile-email');
+        const userEmailInfo = document.getElementById('user-email-info');
+        const logoutButton = document.getElementById('logout-button');
+
+        // Vérification de l'état de l'utilisateur
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // Utilisateur connecté : afficher les infos
+                console.log("Utilisateur connecté :", user.uid);
+                profileName.textContent = user.displayName || 'Utilisateur';
+                profileEmail.textContent = "Bienvenue sur votre espace de gestion de profil.";
+                userEmailInfo.textContent = user.email;
+            } else {
+                // Utilisateur déconnecté : redirection vers la page de connexion
+                console.log("Utilisateur déconnecté. Redirection...");
+                window.location.href = "login.html";
+            }
+        });
+
+        // Gestion de la déconnexion
+        logoutButton.addEventListener('click', () => {
+            signOut(auth).then(() => {
+                console.log('Déconnexion réussie');
+                window.location.href = "login.html";
+            }).catch((error) => {
+                console.error("Erreur de déconnexion:", error);
+                alert("Erreur lors de la déconnexion. Veuillez réessayer.");
+            });
+        });
+    </script>
 </body>
 </html>
